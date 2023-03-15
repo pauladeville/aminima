@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,500;1,900&display=swap");
+p {
+  font-weight: 400;
+  color: hsl(40deg, 14%, 96%);
+  font-size: 20px;
+  line-height: 30px;
+}
+p a {
+  color: hsl(266deg, 100%, 64%);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.title {
+  font-weight: 900;
+  font-size: 20px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: start;
+  align-items: end;
+  margin-bottom: 60px;
+  padding-top: 10px;
+}
+.title h3, .title span {
+  font-size: 24px;
+}
+.title h3 {
+  font-style: italic;
+  color: hsl(40deg, 14%, 96%);
+  font-weight: 900;
+}
+.title span {
+  color: hsl(266deg, 100%, 64%);
+}
+.title div {
+  background-color: hsl(40deg, 14%, 96%);
+  height: 1px;
+  width: 30px;
+  margin: 0 10px 8px 10px;
+}
+@media screen and (min-width: 500px) {
+  .title h3, .title span {
+    font-size: 24px;
+  }
+}
+
+button {
+  border: hsl(40deg, 14%, 96%) 1px solid;
+  border-radius: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 25px 15px 25px;
+  margin: 35px 0;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: left;
+  transition: all 300ms ease-in-out;
+}
+button a {
+  text-decoration: none;
+  margin-right: 20px;
+}
+button:hover {
+  background-color: hsl(266deg, 100%, 64%);
+  border-color: hsl(266deg, 100%, 64%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Source Code Pro", monospace;
+  color: hsl(40deg, 14%, 96%);
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(195deg, 46%, 5%);
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 500;
+  color: hsl(40deg, 14%, 96%);
+  padding-bottom: 4px;
+}
+
+nav {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  background-color: hsl(195deg, 46%, 5%);
+  width: 100%;
+  z-index: 9;
+}
+@media screen and (min-width: 500px) {
+  nav {
+    position: sticky;
+  }
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
+}
+.hamburger span {
+  background-color: hsl(40deg, 14%, 96%);
+  height: 2px;
+  width: 100%;
+  transition: all 500ms ease-in-out;
+  position: absolute;
+}
+.hamburger span:nth-child(1) {
+  transform: translateY(-7px);
+}
+.hamburger span:nth-child(3) {
+  transform: translateY(7px);
+}
+.hamburger--close span:nth-child(1) {
+  transform: rotateZ(45deg);
+}
+.hamburger--close span:nth-child(2) {
+  background-color: transparent;
+}
+.hamburger--close span:nth-child(3) {
+  transform: rotateZ(-45deg);
+}
+
+.menu-mobile {
+  position: fixed;
+  background-color: hsl(195deg, 46%, 5%);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  transform: translateY(0);
+  transition: transform 500ms ease-in-out;
+}
+.menu-mobile--close {
+  transform: translateY(-1000px);
+}
+.menu-mobile__item {
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 400;
+  color: hsl(40deg, 14%, 96%);
+  font-size: 20px;
+  line-height: 30px;
+}
+.menu-mobile__item a {
+  color: hsl(266deg, 100%, 64%);
+  font-weight: 500;
+  text-decoration: none;
+}
+.menu-mobile__item span {
+  color: hsl(266deg, 100%, 64%);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+header {
+  padding: 110px 40px 80px 40px;
+  background: url(ressources/bg.jpg);
+  background-size: cover;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: flex-start;
+}
+header h2 {
+  font-size: 32px;
+  margin-bottom: 35px;
+}
+
+section .container {
+  padding: 80px 40px;
+}
+
+#about img {
+  width: 100%;
+}
+#about .stack {
+  margin-top: 20px;
+}
+#about .stack span {
+  color: hsl(266deg, 100%, 64%);
+  font-weight: 500;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+#clients {
+  background-color: #0e1f25;
+}
+
+#contact {
+  background: url(ressources/bg.jpg);
+  background-size: cover;
+}
+#contact .container {
+  text-align: center;
+  padding-bottom: 0;
+}
+#contact .contact-button {
+  text-decoration: none;
+  font-size: 65px;
+  text-transform: uppercase;
+  font-style: italic;
+  transition: color 200ms ease-in-out;
+}
+#contact .contact-button:hover {
+  color: hsl(266deg, 100%, 64%);
+}
+#contact .social {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#contact img {
+  width: 32px;
+  margin-top: 20px;
+}
+#contact img:first-child {
+  margin-top: 0;
+}
+
+/*# sourceMappingURL=style.css.map */

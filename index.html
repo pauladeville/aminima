@@ -5,8 +5,124 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>aminima • code by pauline desmarets </title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
+  <nav>
+    <h1>/ aminima</h1>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+  <ul class="menu-mobile menu-mobile--close">
+    <li class="menu-mobile__item">
+      <a href="#about">
+        <span>01</span>
+        <p>about me</p>
+      </a>
+    </li>
+    <li class="menu-mobile__item">
+      <a href="#clients">
+        <span>02</span>
+        <p>clients</p>
+      </a>
+    </li>
+    <li class="menu-mobile__item">
+      <a href="#work">
+        <span>03</span>
+        <p>projets</p>
+      </a>
+    </li>
+    <li class="menu-mobile__item">
+      <a href="#contact">
+        <span>04</span>
+        <p>contact</p>
+      </a>
+    </li>
+  </ul>
+
+  <header>
+    <h2>du code léger pour des sites web singuliers</h2>
+    <p>développement de sites rapides,</p>
+    <p>intégration responsive pixel perfect,</p>
+    <p>création d'animations immersives</p>
+    <button>
+      <a href="#work">projets réalisés</a>
+      <img src="ressources/arrow-right.png" alt="">
+    </button>
+  </header>
+
+  <section id="about">
+    <img src="ressources/pauline-mobile.jpg" alt="">
+    <div class="container">
+      <div class="title">
+        <span>01</span>
+        <div></div>
+        <h3>about me</h3>
+      </div>
+      <p>Je m’appelle Pauline Desmarets, et je suis une développeuse fullstack à la recherche du site parfait : impactant, léger, facile à maintenir. J’explore sans cesse de nouveaux langages et outils, mais j’aime particulièrement travailler avec :</p>  
+      <div class="stack">
+        <p><span>></span>Sass</p>
+        <p><span>></span>JavaScript</p>
+        <p><span>></span>Vue.js 3</p>
+        <p><span>></span>Express</p>
+        <p><span>></span>Node.js</p>
+        <p><span>></span>MySQL</p>
+        <p><span>></span>WordPress</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="clients">
+    <div class="container">
+      <div class="title">
+        <span>02</span>
+        <div></div>
+        <h3>clients</h3>
+      </div>
+      <div class="accordeon">
+        <p>The Green Light</p>
+        <p>Velonomy</p>
+        <p>Digital Skipper</p>
+      </div>  
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="container">
+      <div class="title">
+        <span>03</span>
+        <div></div>
+        <h3>réalisations</h3>
+      </div>
+      <p>Ces projets ont tous été codés sur la base de maquettes respectées au pixel près, et sont 100% mobile responsives.</p>
+    </div>
+    <div class="carousel">
+      <img src="ressources/projects/product-page.png" alt="">
+      <img src="ressources/projects/homepage.png" alt="">
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="title">
+        <span>04</span>
+        <div></div>
+        <h3>un projet en tête ?</h3>
+      </div>
+      <a class="contact-button" href="mailto:pauline@reference-club.fr">let's talk</a>
+    </div>
+    <div class="social">
+      <a href="mailto:pauline@reference-club.fr">
+        <img src="ressources/mail.png" alt="">
+      </a>
+      <img src="ressources/github.png" alt="">
+      <img src="ressources/linkedin.png" alt="">
+    </div>
+  </section>
+
+  <script src="app.js"></script>
 </body>
 </html>

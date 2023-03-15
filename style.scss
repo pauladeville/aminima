@@ -1,0 +1,289 @@
+//COLORS
+
+$light:hsl(40, 14%, 96%);
+$accent:hsl(266, 100%, 64%);
+$dark:hsl(195, 46%, 5%);
+
+//MEDIA QUERIES
+
+@mixin desktop {
+  @media screen and (min-width: 500px) {
+    @content;
+  }
+};
+
+//TEXT
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,500;1,900&display=swap');
+
+$font-weight: (
+  text: 400,
+  link: 500,
+  title: 900
+);
+
+@mixin accent-text{
+  color: $accent;
+  font-weight: map-get($font-weight, link);
+  text-decoration: none;
+}
+
+@mixin text {
+  font-weight: map-get($font-weight, text);
+  color: $light;
+  font-size: 20px;
+  line-height: 30px;
+  a{
+    @include accent-text;
+  }
+};
+
+p{
+  @include text;
+}
+
+.title {
+  font-weight: map-get($font-weight, title);
+  font-size: 20px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: start;
+  align-items: end;
+  margin-bottom: 60px;
+  padding-top: 10px;
+  h3, span{
+    font-size: 24px;
+  }
+  h3{
+    font-style: italic;
+    color: $light;
+    font-weight: map-get($font-weight, title); 
+  }
+  span{
+    color: $accent;
+  }
+  div{
+    background-color: $light;
+    height: 1px;
+    width: 30px;
+    margin: 0 10px 8px 10px;
+
+  }
+  @include desktop{
+    h3, span{
+      font-size: 24px;
+    }
+  }
+}
+
+//PADDING
+$padding:(
+  mobileX: 40px,
+  mobileY: 80px
+);
+
+//BUTTONS
+
+button {
+  border: $light 1px solid;
+  border-radius: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 25px 15px 25px;
+  margin: 35px 0;
+  background-color: transparent;
+  font-weight: map-get($font-weight, link);
+  font-size: 20px;
+  text-align: left;
+  transition: all 300ms ease-in-out;
+  a{
+    text-decoration: none;
+    margin-right: 20px;
+  }
+  &:hover{
+    background-color: $accent;
+    border-color: $accent;
+  }
+}
+
+//RESET
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Source Code Pro', monospace;
+  color: $light;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: $dark;
+}
+
+//MENU
+
+h1{
+  font-size: 20px;
+  font-weight: map-get($font-weight, link);
+  color: $light;
+  padding-bottom: 4px;
+}
+
+nav{
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  background-color: $dark;
+  width: 100%;
+  z-index: 9;
+  @include desktop{
+    position: sticky;
+  }
+}
+
+
+//MENU HAMBURGER
+
+.hamburger{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
+  span{
+    background-color: $light;
+    height: 2px;
+    width: 100%;
+    transition: all 500ms ease-in-out;
+    position: absolute;
+    &:nth-child(1){
+      transform: translateY(-7px);
+    };
+    &:nth-child(3){
+      transform: translateY(7px);
+    };
+  }
+  &--close{
+    span{
+      &:nth-child(1){
+        transform: rotateZ(45deg);
+      }
+      &:nth-child(2){
+        background-color: transparent;
+      }
+      &:nth-child(3){
+        transform: rotateZ(-45deg);
+      }
+    }
+  }
+}
+
+.menu-mobile{
+  position: fixed;
+  background-color: $dark;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  transform: translateY(0);
+  transition: transform 500ms ease-in-out;
+  &--close{
+    transform: translateY(-1000px);
+  }
+  &__item{
+    margin-bottom: 30px;
+    text-align: center;
+    @include text;
+    span{
+      @include accent-text;
+    }
+  }
+}
+
+
+//HEADER
+
+header{
+  padding: (map-get($padding, mobileY) + 30px) map-get($padding, mobileX) map-get($padding, mobileY) map-get($padding, mobileX);
+  background: url(ressources/bg.jpg);
+  background-size: cover;
+  height: (95vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: flex-start;
+  h2{
+    font-size: 32px;
+    margin-bottom: 35px;
+  }
+}
+
+//SECTION
+
+section{
+  .container{
+    padding: map-get($padding, mobileY) map-get($padding, mobileX);
+  }
+}
+
+#about{
+  img{
+    width: 100%;
+  }
+  .stack{
+    margin-top: 20px;
+    span{
+      @include accent-text;
+      margin-right: 10px;
+    }
+  }
+}
+
+#clients{
+  background-color: lighten($dark, 5%);
+}
+
+#work{
+
+}
+
+#contact{
+  background: url(ressources/bg.jpg);
+  background-size: cover;
+  .container{
+    text-align: center;
+    padding-bottom: 0;
+  }
+  .contact-button{
+    text-decoration: none;
+    font-size: 65px;
+    text-transform: uppercase;
+    font-style: italic;
+    transition: color 200ms ease-in-out;
+    &:hover{
+      color: $accent;
+    }
+  }
+  .social{
+    padding: map-get($padding, mobileX);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  img{
+    width: 32px;
+    margin-top: 20px;
+    &:first-child{
+      margin-top: 0;
+    }
+  }
+}
