@@ -13,6 +13,3 @@ for(menuMobileLink of menuMobileLinks){
     menuMobile.classList.toggle('menu-mobile--close');
   })
 }
-
-
-

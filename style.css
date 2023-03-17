@@ -10,6 +10,9 @@ p a {
   font-weight: 500;
   text-decoration: none;
 }
+p strong {
+  color: hsl(266deg, 100%, 64%);
+}
 
 .title {
   font-weight: 900;
@@ -164,6 +167,9 @@ nav {
   font-weight: 500;
   text-decoration: none;
 }
+.menu-mobile__item strong {
+  color: hsl(266deg, 100%, 64%);
+}
 .menu-mobile__item span {
   color: hsl(266deg, 100%, 64%);
   font-weight: 500;
@@ -236,6 +242,35 @@ section .container {
 }
 #contact img:first-child {
   margin-top: 0;
+}
+
+.mobile-cards {
+  background-color: transparent;
+  margin: 0 20px;
+  list-style-type: none;
+}
+
+.card__content {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+#card-1 {
+  --index: 1;
+}
+
+#card-2 {
+  --index: 2;
+}
+
+#card-3 {
+  --index: 3;
+}
+
+.card {
+  position: sticky;
+  top: 80px;
+  padding-top: calc(var(--index) * 1em);
 }
 
 /*# sourceMappingURL=style.css.map */

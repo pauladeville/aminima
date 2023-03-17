@@ -36,6 +36,9 @@ $font-weight: (
   a{
     @include accent-text;
   }
+  strong{
+    color: $accent;
+  }
 };
 
 p{
@@ -144,7 +147,6 @@ nav{
   }
 }
 
-
 //MENU HAMBURGER
 
 .hamburger{
@@ -209,7 +211,6 @@ nav{
   }
 }
 
-
 //HEADER
 
 header{
@@ -252,10 +253,6 @@ section{
   background-color: lighten($dark, 5%);
 }
 
-#work{
-
-}
-
 #contact{
   background: url(ressources/bg.jpg);
   background-size: cover;
@@ -286,4 +283,35 @@ section{
       margin-top: 0;
     }
   }
+}
+
+//MOBILE CARDS EFFECT (WORK)
+
+$card-top-offset: 1em;
+$card-sides-offset: 20px;
+//mettre à jour à chaque ajout de ref
+$numcards: 3;
+
+.mobile-cards{
+  background-color: transparent;
+  margin: 0 $card-sides-offset;
+  list-style-type: none;
+}
+.card__content{
+  border-radius: 20px;
+  overflow: hidden;
+}
+#card-1{
+  --index: 1;
+}
+#card-2{
+  --index: 2;
+}
+#card-3{
+  --index: 3;
+}
+.card{
+  position: sticky;
+  top: 80px;
+  padding-top: calc(var(--index) * $card-top-offset);
 }
