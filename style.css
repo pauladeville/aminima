@@ -24,7 +24,8 @@ p strong {
   margin-bottom: 60px;
   padding-top: 10px;
 }
-.title h3, .title span {
+.title h3,
+.title span {
   font-size: 24px;
 }
 .title h3 {
@@ -41,8 +42,9 @@ p strong {
   width: 30px;
   margin: 0 10px 8px 10px;
 }
-@media screen and (min-width: 500px) {
-  .title h3, .title span {
+@media screen and (min-width: 900px) {
+  .title h3,
+.title span {
     font-size: 24px;
   }
 }
@@ -68,6 +70,30 @@ button a {
 button:hover {
   background-color: hsl(266deg, 100%, 64%);
   border-color: hsl(266deg, 100%, 64%);
+}
+
+.arrow {
+  border: solid hsl(40deg, 14%, 96%);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 5px;
+  transition: all 200ms ease-in-out;
+}
+.arrow--right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.arrow--left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.arrow--up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+.arrow--down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
 
 * {
@@ -99,7 +125,7 @@ nav {
   width: 100%;
   z-index: 9;
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 900px) {
   nav {
     position: sticky;
   }
@@ -190,16 +216,35 @@ header h2 {
   font-size: 32px;
   margin-bottom: 35px;
 }
+@media screen and (min-width: 900px) {
+  header {
+    padding: 10% 20vh 10% 20vh;
+  }
+}
 
 section .container {
   padding: 80px 40px;
 }
-
-#about img {
-  width: 100%;
+@media screen and (min-width: 900px) {
+  section .container {
+    padding: 10% 20vh;
+  }
 }
-#about .stack {
-  margin-top: 20px;
+
+#about .portrait {
+  background: url(ressources/pauline-mobile.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+}
+@media screen and (min-width: 500px) {
+  #about .portrait {
+    display: none;
+  }
+}
+#about span {
+  border-color: hsl(266deg, 100%, 64%);
 }
 #about .stack span {
   color: hsl(266deg, 100%, 64%);
@@ -208,8 +253,105 @@ section .container {
   margin-right: 10px;
 }
 
+.more-info {
+  margin-top: 20px;
+}
+.more-info img {
+  display: none;
+}
+@media screen and (min-width: 500px) {
+  .more-info img {
+    display: inline-block;
+    width: 50%;
+    max-width: 250px;
+    border-radius: 500px;
+  }
+}
+@media screen and (min-width: 500px) {
+  .more-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+  }
+}
+
 #clients {
   background-color: #0e1f25;
+}
+
+.accordeon__client {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid hsl(40deg, 14%, 96%) 1px;
+  padding: 20px 5px 20px 0;
+  margin: 20px 0;
+  cursor: pointer;
+}
+.accordeon__client p {
+  transition: all 200ms ease-in-out;
+}
+.accordeon__client:hover > span {
+  border-color: hsl(266deg, 100%, 64%);
+}
+.accordeon__client:hover > p {
+  color: hsl(266deg, 100%, 64%);
+}
+.accordeon__client--active p {
+  color: hsl(266deg, 100%, 64%);
+}
+.accordeon__client--active span {
+  border-color: hsl(266deg, 100%, 64%);
+}
+
+.accordeon__quote {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 300ms ease-in-out;
+}
+
+.mobile-cards {
+  background-color: transparent;
+  margin: 0 20px;
+  list-style-type: none;
+}
+
+.card__content {
+  overflow: hidden;
+  text-align: center;
+}
+.card__content img {
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+}
+
+#card-1 {
+  --index: 1;
+}
+
+#card-2 {
+  --index: 2;
+}
+
+#card-3 {
+  --index: 3;
+}
+
+#card-4 {
+  --index: 4;
+}
+
+#card-5 {
+  --index: 5;
+}
+
+.card {
+  position: sticky;
+  top: 80px;
+  padding-top: calc(var(--index) * 1.5em);
 }
 
 #contact {
@@ -219,6 +361,9 @@ section .container {
 #contact .container {
   text-align: center;
   padding-bottom: 0;
+}
+#contact .container .title {
+  text-align: left;
 }
 #contact .contact-button {
   text-decoration: none;
@@ -236,41 +381,17 @@ section .container {
   flex-direction: column;
   justify-content: center;
 }
+@media screen and (min-width: 900px) {
+  #contact .social {
+    padding: 20vh;
+  }
+}
 #contact img {
   width: 32px;
   margin-top: 20px;
 }
 #contact img:first-child {
   margin-top: 0;
-}
-
-.mobile-cards {
-  background-color: transparent;
-  margin: 0 20px;
-  list-style-type: none;
-}
-
-.card__content {
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-#card-1 {
-  --index: 1;
-}
-
-#card-2 {
-  --index: 2;
-}
-
-#card-3 {
-  --index: 3;
-}
-
-.card {
-  position: sticky;
-  top: 80px;
-  padding-top: calc(var(--index) * 1em);
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,12 +1,17 @@
 //COLORS
 
-$light:hsl(40, 14%, 96%);
-$accent:hsl(266, 100%, 64%);
-$dark:hsl(195, 46%, 5%);
+$light: hsl(40, 14%, 96%);
+$accent: hsl(266, 100%, 64%);
+$dark: hsl(195, 46%, 5%);
 
 //MEDIA QUERIES
 
 @mixin desktop {
+  @media screen and (min-width: 900px) {
+    @content;
+  }
+};
+@mixin tablet {
   @media screen and (min-width: 500px) {
     @content;
   }
@@ -14,15 +19,15 @@ $dark:hsl(195, 46%, 5%);
 
 //TEXT
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,500;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,500;1,900&display=swap");
 
 $font-weight: (
   text: 400,
   link: 500,
-  title: 900
+  title: 900,
 );
 
-@mixin accent-text{
+@mixin accent-text {
   color: $accent;
   font-weight: map-get($font-weight, link);
   text-decoration: none;
@@ -33,15 +38,15 @@ $font-weight: (
   color: $light;
   font-size: 20px;
   line-height: 30px;
-  a{
+  a {
     @include accent-text;
   }
-  strong{
+  strong {
     color: $accent;
   }
-};
+}
 
-p{
+p {
   @include text;
 }
 
@@ -54,35 +59,39 @@ p{
   align-items: end;
   margin-bottom: 60px;
   padding-top: 10px;
-  h3, span{
+  h3,
+  span {
     font-size: 24px;
   }
-  h3{
+  h3 {
     font-style: italic;
     color: $light;
-    font-weight: map-get($font-weight, title); 
+    font-weight: map-get($font-weight, title);
   }
-  span{
+  span {
     color: $accent;
   }
-  div{
+  div {
     background-color: $light;
     height: 1px;
     width: 30px;
     margin: 0 10px 8px 10px;
-
   }
-  @include desktop{
-    h3, span{
+  @include desktop {
+    h3,
+    span {
       font-size: 24px;
     }
   }
 }
 
 //PADDING
-$padding:(
+
+$padding: (
   mobileX: 40px,
-  mobileY: 80px
+  mobileY: 80px,
+  desktopX: 20vh,
+  desktopY: 10%
 );
 
 //BUTTONS
@@ -100,40 +109,66 @@ button {
   font-size: 20px;
   text-align: left;
   transition: all 300ms ease-in-out;
-  a{
+  a {
     text-decoration: none;
     margin-right: 20px;
   }
-  &:hover{
+  &:hover {
     background-color: $accent;
     border-color: $accent;
   }
 }
 
+//ARROWS
+
+.arrow {
+  border: solid $light;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 5px;
+  transition: all 200ms ease-in-out;
+  &--right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  &--left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+  &--up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  &--down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+}
+
 //RESET
 
-*{
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Source Code Pro", monospace;
   color: $light;
   box-sizing: border-box;
 }
 
-body{
+body {
   background-color: $dark;
 }
 
 //MENU
 
-h1{
+h1 {
   font-size: 20px;
   font-weight: map-get($font-weight, link);
   color: $light;
   padding-bottom: 4px;
 }
 
-nav{
+nav {
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -142,14 +177,14 @@ nav{
   background-color: $dark;
   width: 100%;
   z-index: 9;
-  @include desktop{
+  @include desktop {
     position: sticky;
   }
 }
 
 //MENU HAMBURGER
 
-.hamburger{
+.hamburger {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -158,35 +193,35 @@ nav{
   height: 30px;
   position: relative;
   cursor: pointer;
-  span{
+  span {
     background-color: $light;
     height: 2px;
     width: 100%;
     transition: all 500ms ease-in-out;
     position: absolute;
-    &:nth-child(1){
+    &:nth-child(1) {
       transform: translateY(-7px);
-    };
-    &:nth-child(3){
+    }
+    &:nth-child(3) {
       transform: translateY(7px);
-    };
+    }
   }
-  &--close{
-    span{
-      &:nth-child(1){
+  &--close {
+    span {
+      &:nth-child(1) {
         transform: rotateZ(45deg);
       }
-      &:nth-child(2){
+      &:nth-child(2) {
         background-color: transparent;
       }
-      &:nth-child(3){
+      &:nth-child(3) {
         transform: rotateZ(-45deg);
       }
     }
   }
 }
 
-.menu-mobile{
+.menu-mobile {
   position: fixed;
   background-color: $dark;
   width: 100%;
@@ -198,14 +233,14 @@ nav{
   list-style-type: none;
   transform: translateY(0);
   transition: transform 500ms ease-in-out;
-  &--close{
+  &--close {
     transform: translateY(-1000px);
   }
-  &__item{
+  &__item {
     margin-bottom: 30px;
     text-align: center;
     @include text;
-    span{
+    span {
       @include accent-text;
     }
   }
@@ -213,7 +248,7 @@ nav{
 
 //HEADER
 
-header{
+header {
   padding: (map-get($padding, mobileY) + 30px) map-get($padding, mobileX) map-get($padding, mobileY) map-get($padding, mobileX);
   background: url(ressources/bg.jpg);
   background-size: cover;
@@ -222,96 +257,185 @@ header{
   flex-direction: column;
   justify-content: end;
   align-items: flex-start;
-  h2{
+  h2 {
     font-size: 32px;
     margin-bottom: 35px;
+  }
+  @include desktop{
+    padding: (map-get($padding, desktopY)) map-get($padding, desktopX) map-get($padding, desktopY) map-get($padding, desktopX);
+
   }
 }
 
 //SECTION
 
-section{
-  .container{
+section {
+  .container {
     padding: map-get($padding, mobileY) map-get($padding, mobileX);
+    @include desktop {
+      padding: map-get($padding, desktopY) map-get($padding, desktopX);
+    }
   }
 }
 
-#about{
-  img{
-    width: 100%;
+//ABOUT
+
+#about {
+  .portrait {
+    background: url(ressources/pauline-mobile.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    @include tablet{
+      display: none;
+    }
   }
-  .stack{
-    margin-top: 20px;
-    span{
+  span{
+    border-color: $accent;
+  }
+  .stack {
+    span {
       @include accent-text;
       margin-right: 10px;
     }
   }
 }
-
-#clients{
-  background-color: lighten($dark, 5%);
+.more-info{
+  margin-top: 20px;
+  img {
+    display: none;
+    @include tablet{
+      display: inline-block;
+      width: 50%;
+      max-width: 250px;
+      border-radius: 500px;
+    }
+  }
+  @include tablet{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:30px;
+  }
 }
 
-#contact{
+//CLIENTS
+
+#clients {
+  background-color: lighten($dark, 5%);
+}
+.accordeon__client{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid $light 1px;
+  padding: 20px 5px 20px 0;
+  margin: 20px 0;
+  cursor: pointer;
+  p{
+    transition: all 200ms ease-in-out;
+  }
+  &:hover > span{
+    border-color: $accent;
+  }
+  &:hover > p{
+    color: $accent;
+  }
+  &--active{
+    p{
+      color: $accent;
+    }
+    span{
+      border-color: $accent;
+    }
+  }
+}
+.accordeon__quote{
+  max-height: 0;
+  overflow: hidden;
+  transition: all 300ms ease-in-out;
+}
+
+//WORK - MOBILE CARDS ANIMATION
+
+$card-top-offset: 1.5em;
+$card-sides-offset: 20px;
+//mettre à jour à chaque ajout de ref
+$numcards: 5;
+
+.mobile-cards {
+  background-color: transparent;
+  margin: 0 $card-sides-offset;
+  list-style-type: none;
+}
+.card__content {
+  overflow: hidden;
+  text-align: center;
+  img {
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+  }
+}
+#card-1 {
+  --index: 1;
+}
+#card-2 {
+  --index: 2;
+}
+#card-3 {
+  --index: 3;
+}
+#card-4 {
+  --index: 4;
+}
+#card-5 {
+  --index: 5;
+}
+.card {
+  position: sticky;
+  top: 80px;
+  padding-top: calc(var(--index) * $card-top-offset);
+}
+
+//CONTACT
+
+#contact {
   background: url(ressources/bg.jpg);
   background-size: cover;
-  .container{
+  .container {
     text-align: center;
     padding-bottom: 0;
+    .title {
+      text-align: left;
+    }
   }
-  .contact-button{
+  .contact-button {
     text-decoration: none;
     font-size: 65px;
     text-transform: uppercase;
     font-style: italic;
     transition: color 200ms ease-in-out;
-    &:hover{
+    &:hover {
       color: $accent;
     }
   }
-  .social{
+  .social {
     padding: map-get($padding, mobileX);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @include desktop{
+      padding: map-get($padding, desktopX);
+    }
   }
-  img{
+  img {
     width: 32px;
     margin-top: 20px;
-    &:first-child{
+    &:first-child {
       margin-top: 0;
     }
   }
-}
-
-//MOBILE CARDS EFFECT (WORK)
-
-$card-top-offset: 1em;
-$card-sides-offset: 20px;
-//mettre à jour à chaque ajout de ref
-$numcards: 3;
-
-.mobile-cards{
-  background-color: transparent;
-  margin: 0 $card-sides-offset;
-  list-style-type: none;
-}
-.card__content{
-  border-radius: 20px;
-  overflow: hidden;
-}
-#card-1{
-  --index: 1;
-}
-#card-2{
-  --index: 2;
-}
-#card-3{
-  --index: 3;
-}
-.card{
-  position: sticky;
-  top: 80px;
-  padding-top: calc(var(--index) * $card-top-offset);
 }
