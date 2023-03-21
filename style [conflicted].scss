@@ -10,21 +10,48 @@ $dark: hsl(195, 46%, 5%);
   @media screen and (min-width: 900px) {
     @content;
   }
-};
+}
 @mixin tablet {
   @media screen and (min-width: 500px) {
     @content;
   }
-};
+}
 
 //ANIMATIONS
 
 @keyframes fadein {
   from {
-      opacity:0;
+    opacity: 0;
   }
   to {
-      opacity:1;
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  /* sur Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  /* sur Safari et Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  /* sur Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -102,12 +129,16 @@ $padding: (
   mobileX: 40px,
   mobileY: 80px,
   desktopX: 10%,
-  desktopY: 10%
+  desktopY: 10%,
 );
 
 //BUTTONS
 
 button {
+  animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari et Chrome */
+    -o-animation: fadein 2s; /* Opera */
   border: $light 1px solid;
   border-radius: 500px;
   display: flex;
@@ -168,7 +199,6 @@ button {
 
 body {
   background-color: $dark;
-  animation: fadein 2s;
 }
 
 //MENU
@@ -178,10 +208,10 @@ h1 {
   font-weight: map-get($font-weight, link);
   color: $light;
   padding-bottom: 4px;
-  a{
+  a {
     text-decoration: none;
     transition: all 200ms ease-in-out;
-    &:hover{
+    &:hover {
       color: $accent;
     }
   }
@@ -204,30 +234,30 @@ nav {
 
 //MENU DESKTOP
 
-.menu-desktop{
+.menu-desktop {
   display: none;
-  @include desktop{
+  @include desktop {
     list-style-type: none;
     display: flex;
     justify-content: end;
     align-items: center;
-    &__item{
+    &__item {
       margin-left: 10%;
-      a{
+      a {
         text-decoration: none;
         display: inline-block;
         width: (400px/4);
       }
-      span{
+      span {
         color: $accent;
       }
-      p{
+      p {
         transition: all 200ms ease-in-out;
-        &:hover{
+        &:hover {
           color: $accent;
         }
       }
-    }  
+    }
   }
 }
 
@@ -269,7 +299,7 @@ nav {
       }
     }
   }
-  @include desktop{
+  @include desktop {
     display: none;
   }
 }
@@ -315,9 +345,8 @@ header {
     font-size: 32px;
     margin-bottom: 35px;
   }
-  @include desktop{
+  @include desktop {
     padding: (map-get($padding, desktopY)) map-get($padding, desktopX) map-get($padding, desktopY) map-get($padding, desktopX);
-
   }
 }
 
@@ -341,11 +370,11 @@ section {
     background-repeat: no-repeat;
     background-size: cover;
     height: 50vh;
-    @include tablet{
+    @include tablet {
       display: none;
     }
   }
-  span{
+  span {
     border-color: $accent;
   }
   .stack {
@@ -355,22 +384,22 @@ section {
     }
   }
 }
-.more-info{
+.more-info {
   margin-top: 20px;
   img {
     display: none;
-    @include tablet{
+    @include tablet {
       display: inline-block;
       width: 50%;
       max-width: 250px;
       border-radius: 500px;
     }
   }
-  @include tablet{
+  @include tablet {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top:30px;
+    margin-top: 30px;
   }
 }
 
@@ -379,41 +408,34 @@ section {
 #clients {
   background-color: lighten($dark, 5%);
 }
-.accordeon__client{
+.accordeon__client {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   border-bottom: solid $light 1px;
-  padding: 20px 5px 20px 0px;
+  padding: 20px 5px 20px 0;
   margin: 20px 0;
   cursor: pointer;
-  transition: all 300ms ease-in-out;
-  p{
-    transition: all 300ms ease-in-out;
+  p {
+    transition: all 200ms ease-in-out;
   }
-  &:hover{
-    padding-left: 20px;
-  }
-  &:hover > span{
+  &:hover > span {
     border-color: $accent;
   }
-  &:hover > p{
+  &:hover > p {
     color: $accent;
-    padding-right: 20px;
-
   }
-  &--active{
-    padding-left: 20px;
-    p{
+  &--active {
+    p {
       color: $accent;
     }
-    span{
+    span {
       border-color: $accent;
     }
   }
 }
-.accordeon__quote{
+.accordeon__quote {
   max-height: 0;
   overflow: hidden;
   transition: all 300ms ease-in-out;
@@ -488,7 +510,7 @@ $numcards: 5;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    @include desktop{
+    @include desktop {
       padding: map-get($padding, desktopX);
     }
   }
