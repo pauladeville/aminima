@@ -14,20 +14,31 @@ for (menuMobileLink of menuMobileLinks) {
   });
 }
 
+//SCROLL NAV DESKTOP
+
+let nav = document.querySelector("nav");
+window.addEventListener("scroll", (e) => {
+  if(scrollY > 150){
+    nav.classList.add('nav--scroll')
+  }else if(scrollY <= 150 || nav.classList.contains('nav--scroll')){
+    nav.classList.remove('nav--scroll');
+  }
+});
+
 //ACCORDEON
 
-let clients = document.querySelectorAll('.accordeon__client');
-let quotes = document.querySelectorAll('accordeon__quote');
-for(let client of clients){
-  client.addEventListener('click', () => {
-    client.classList.toggle('accordeon__client--active');
-    client.firstElementChild.classList.toggle('arrow--down');
-    client.firstElementChild.classList.toggle('arrow--up');
+let clients = document.querySelectorAll(".accordeon__client");
+let quotes = document.querySelectorAll("accordeon__quote");
+for (let client of clients) {
+  client.addEventListener("click", () => {
+    client.classList.toggle("accordeon__client--active");
+    client.firstElementChild.classList.toggle("arrow--down");
+    client.firstElementChild.classList.toggle("arrow--up");
     let quote = client.nextElementSibling;
-    if(quote.style.maxHeight){
+    if (quote.style.maxHeight) {
       quote.style.maxHeight = null;
     } else {
-      quote.style.maxHeight = quote.scrollHeight + 'px';
+      quote.style.maxHeight = quote.scrollHeight + "px";
     }
-  })
+  });
 }

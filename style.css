@@ -110,6 +110,11 @@ button:hover {
   font-family: "Source Code Pro", monospace;
   color: hsl(40deg, 14%, 96%);
   box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -143,8 +148,16 @@ nav {
 }
 @media screen and (min-width: 900px) {
   nav {
-    position: sticky;
+    position: fixed;
     padding: 25px 10%;
+    background-color: transparent;
+    transition: background-color 300ms ease-in-out;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .nav--scroll {
+    background-color: hsl(195deg, 46%, 5%);
   }
 }
 
@@ -231,7 +244,7 @@ nav {
   z-index: 8;
 }
 .menu-mobile--close {
-  transform: translateY(-1000px);
+  transform: translateY(-1050px);
 }
 .menu-mobile__item {
   margin-bottom: 30px;
@@ -256,9 +269,8 @@ nav {
 }
 
 header {
+  background: linear-gradient(0deg, hsl(195deg, 46%, 5%) 0%, hsl(266deg, 100%, 10%) 100%);
   padding: 110px 40px 80px 40px;
-  background: url(ressources/bg.jpg);
-  background-size: cover;
   height: 95vh;
   display: flex;
   flex-direction: column;
@@ -268,19 +280,26 @@ header {
 header h2 {
   font-size: 32px;
   margin-bottom: 35px;
+  font-weight: 400;
 }
 @media screen and (min-width: 900px) {
   header {
-    padding: 10% 10% 10% 10%;
+    padding: 250px 10% 150px 10%;
+    position: relative;
+    top: -100px;
+    height: 110vh;
   }
 }
 
+section {
+  background-color: hsl(195deg, 46%, 5%);
+}
 section .container {
   padding: 80px 40px;
 }
 @media screen and (min-width: 900px) {
   section .container {
-    padding: 10% 10%;
+    padding: 150px 10%;
   }
 }
 
@@ -330,7 +349,7 @@ section .container {
 }
 
 #clients {
-  background-color: #0e1f25;
+  background-color: hsl(195deg, 46%, 5%);
 }
 
 .accordeon__client {
@@ -357,9 +376,6 @@ section .container {
   color: hsl(266deg, 100%, 64%);
   padding-right: 20px;
 }
-.accordeon__client--active {
-  padding-left: 20px;
-}
 .accordeon__client--active p {
   color: hsl(266deg, 100%, 64%);
 }
@@ -377,6 +393,11 @@ section .container {
   background-color: transparent;
   margin: 0 20px;
   list-style-type: none;
+}
+@media screen and (min-width: 900px) {
+  .mobile-cards {
+    display: none;
+  }
 }
 
 .card__content {
@@ -416,8 +437,8 @@ section .container {
 }
 
 #contact {
-  background: url(ressources/bg.jpg);
-  background-size: cover;
+  background: linear-gradient(0deg, hsl(266deg, 100%, 10%) 0%, hsl(195deg, 46%, 5%) 100%);
+  position: relative;
 }
 #contact .container {
   text-align: center;
