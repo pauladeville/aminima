@@ -5,10 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>aminima / code by pauline desmarets</title>
-    <link rel="icon" href="ressources/favicon.png">
+    <link rel="icon" href="ressources/favicon.png" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="loader">
+      <span class="loader__icon"></span>
+      <p class="loader__text">aminima</p>
+    </div>
     <nav>
       <h1>
         <a href="/">/ aminima</a>
@@ -73,10 +77,10 @@
     </ul>
 
     <header>
-      <h2>du code léger pour des sites web singuliers</h2>
-      <p>développement de sites rapides,</p>
-      <p>intégration responsive pixel perfect,</p>
-      <p>création d'animations immersives</p>
+      <h2>Du code léger pour des sites web singuliers</h2>
+      <p><span class="arrow arrow--right"></span> développement de sites rapides,</p>
+      <p><span class="arrow arrow--right"></span> intégration responsive pixel perfect,</p>
+      <p><span class="arrow arrow--right"></span> création d'animations immersives</p>
       <button>
         <a href="#work">projets réalisés</a>
         <img src="ressources/arrow-right.png" alt="" />
@@ -94,15 +98,15 @@
         <p>Je m’appelle Pauline Desmarets, et je suis une développeuse fullstack à la recherche du site parfait : impactant, léger, facile à maintenir. J’explore sans cesse de nouveaux langages et outils, mais j’aime particulièrement travailler avec :</p>
         <div class="more-info">
           <div class="stack">
-            <p><span class="arrow arrow--right"></span>  Sass</p>
-            <p><span class="arrow arrow--right"></span>  JavaScript</p>
-            <p><span class="arrow arrow--right"></span>  Vue.js 3</p>
-            <p><span class="arrow arrow--right"></span>  Express</p>
-            <p><span class="arrow arrow--right"></span>  Node.js</p>
-            <p><span class="arrow arrow--right"></span>  MySQL</p>
-            <p><span class="arrow arrow--right"></span>  WordPress</p>
+            <p><span class="arrow arrow--right"></span> Sass</p>
+            <p><span class="arrow arrow--right"></span> JavaScript</p>
+            <p><span class="arrow arrow--right"></span> Vue.js 3</p>
+            <p><span class="arrow arrow--right"></span> Express</p>
+            <p><span class="arrow arrow--right"></span> Node.js</p>
+            <p><span class="arrow arrow--right"></span> MySQL</p>
+            <p><span class="arrow arrow--right"></span> WordPress</p>
           </div>
-          <img src="ressources/pauline-desmarets.jpg" alt="">
+          <img src="ressources/pauline-desmarets.jpg" alt="" />
         </div>
       </div>
     </section>
@@ -120,7 +124,7 @@
             <p>The Green Light</p>
           </div>
           <div class="accordeon__quote">
-            <p>Nous avons été très satisfaits de la qualité du travail rendu et recommandons Pauline sans aucune hésitation. Réactive, rigoureuse et compétente. Une collaboration que nous espérons pouvoir renouveler prochainement. </p>
+            <p>Nous avons été très satisfaits de la qualité du travail rendu et recommandons Pauline sans aucune hésitation. Réactive, rigoureuse et compétente. Une collaboration que nous espérons pouvoir renouveler prochainement.</p>
           </div>
           <div class="accordeon__client">
             <span class="arrow arrow--down"></span>
@@ -148,30 +152,82 @@
           <h3>réalisations</h3>
         </div>
         <p>Ces projets ont tous été codés sur la base de maquettes respectées au pixel près, et sont 100% mobile responsives.</p>
+        <div class="desktop-card">
+          <img src="ressources/projects/desktop/calculatrice.png" alt="" />
+          <h1>Calculatrice clavier-compatible</h1>
+          <p class="box">Calculatrice fonctionnant au clic et au clavier, gérant les erreurs avec une animation simple et proposant 3 thèmes de couleurs différents.</p>
+          <div class="desktop-card__stack">
+            <p>JavaScript</p>
+            <p>Sass</p>
+          </div>
+          <div class="desktop-card__links">
+            <a href="https://github.com/pauladeville/calculatrice-javascript">
+              <img src="ressources/github-accent.png" alt="" />
+            </a>
+            <a href="https://pauladeville.github.io/calculatrice-javascript/">
+              <img src="ressources/link-accent.png" alt="" />
+            </a>
+          </div>
+        </div>
+        <div class="desktop-card desktop-card--left">
+          <img src="ressources/projects/desktop/product-page.png" alt="" />
+          <h1>Page produit avec mise au panier</h1>
+          <p class="box">Page desktop et mobile comprenant une galerie photo + lightbox animée avec JavaScript, et une gestion du panier dynamique avec localStorage.</p>
+          <div class="desktop-card__stack">
+            <p>JavaScript</p>
+            <p>Sass</p>
+          </div>
+          <div class="desktop-card__links">
+            <a href="https://github.com/pauladeville/sneakers-product-page">
+              <img src="ressources/github-accent.png" alt="" />
+            </a>
+            <a href="https://pauladeville.github.io/sneakers-product-page/">
+              <img src="ressources/link-accent.png" alt="" />
+            </a>
+          </div>
+        </div>
+        <div class="desktop-card">
+          <img src="ressources/projects/desktop/landing-page.png" alt="" />
+          <h1>Landing page responsive</h1>
+          <p class="box">Page d'accueil responsive avec contenus en onglets, en accordéon, inline svg modifications et des animations douces sur l'ensemble.</p>
+          <div class="desktop-card__stack">
+            <p>JavaScript</p>
+            <p>Sass</p>
+          </div>
+          <div class="desktop-card__links">
+            <a href="https://github.com/pauladeville/bookmark-homepage">
+              <img src="ressources/github-accent.png" alt="" />
+            </a>
+            <a href="https://pauladeville.github.io/bookmark-homepage/">
+              <img src="ressources/link-accent.png" alt="" />
+            </a>
+          </div>
+        </div>
+
       </div>
       <ul class="mobile-cards">
-        <li class="card" id="card-1">
+        <li class="mobile-card" id="mobile-card-1">
           <div class="card__content">
             <a href="https://pauladeville.github.io/ecommerce-homepage/">
               <img src="ressources/projects/mobile/room.png" alt="" />
             </a>
           </div>
         </li>
-        <li class="card" id="card-2">
+        <li class="mobile-card" id="mobile-card-2">
           <div class="card__content">
             <a href="https://pauladeville.github.io/bookmark-homepage/">
               <img src="ressources/projects/mobile/bookmarks.png" alt="" />
             </a>
           </div>
         </li>
-        <li class="card" id="card-3">
+        <li class="mobile-card" id="mobile-card-3">
           <div class="card__content">
             <a href="https://pauladeville.github.io/calculatrice-javascript/">
               <img src="ressources/projects/mobile/calculatrice.png" alt="" />
             </a>
           </div>
         </li>
-        <li class="card" id="card-4">
+        <li class="mobile-card" id="mobile-card-4">
           <div class="card__content">
             <a href="https://pauladeville.github.io/sneakers-product-page">
               <img src="ressources/projects/mobile/sneakers.png" alt="" />
@@ -180,32 +236,8 @@
         </li>
       </ul>
 
-      <div class="scrollX">
-        <div class="scrollX__container">
-          <!-- <a href="https://pauladeville.github.io/ecommerce-homepage/"> -->
-            <div class="scrollX__slide scrollX__slide--one"></div>
-          <!-- </a> -->
-          <!-- <a href="https://pauladeville.github.io/ecommerce-homepage/"> -->
-            <div class="scrollX__slide scrollX__slide--two"></div>
-          <!-- </a> -->
-          <!-- <a href="https://pauladeville.github.io/ecommerce-homepage/"> -->
-            <div class="scrollX__slide scrollX__slide--three"></div>
-          <!-- </a> -->
-          <!-- <a href="https://pauladeville.github.io/ecommerce-homepage/"> -->
-            <div class="scrollX__slide scrollX__slide--four"></div>
-          <!-- </a> -->
-          <!-- <a href="https://pauladeville.github.io/ecommerce-homepage/"> -->
-            <div class="scrollX__slide scrollX__slide--five"></div>
-          <!-- </a> -->
-          <!-- <a href="https://pauladeville.github.io/ecommerce-homepage/"> -->
-            <div class="scrollX__slide scrollX__slide--six"></div>
-          <!-- </a> -->
-
-        </div>
-      </div>
-
       <div class="container">
-        <p>Je fais aussi des sites WordPress optimisés SEO, livrés rapidement et clés en main, via mon entreprise <a href="https://reference-club.fr/">REFERENCE CLUB</a>.</p>
+        <p>Je fais aussi des sites WordPress optimisés SEO, livrés rapidement et clés en main, via mon entreprise <a href="https://reference-club.fr/">reference club</a>.</p>
         <button>
           <a href="https://reference-club.fr/">sites wordpress</a>
           <img src="ressources/arrow-right.png" alt="" />
@@ -224,10 +256,10 @@
       </div>
       <div class="social">
         <a href="mailto:pauline@aminima.fr">
-          <img src="ressources/mail.png" alt="" />
+          <img src="ressources/mail-accent.png" alt="" />
         </a>
-        <img src="ressources/github.png" alt="" />
-        <img src="ressources/linkedin.png" alt="" />
+        <img src="ressources/github-accent.png" alt="" />
+        <img src="ressources/linkedin-accent.png" alt="" />
       </div>
     </section>
 

@@ -1,3 +1,13 @@
+//LOADER PAGE
+
+const loader = document.querySelector('.loader');
+function hideLoader(){
+  setTimeout(() => {
+    loader.classList.add('loader--ended');
+  }, 3000);
+}
+hideLoader();
+
 //HAMBURGER
 
 const burger = document.querySelector(".hamburger");
