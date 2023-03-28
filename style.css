@@ -1,20 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;300;400;500;800&display=swap");
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes slide-right {
-  from {
-    margin-right: -25px;
-  }
-  to {
-    margin-right: 25px;
-  }
-}
 @keyframes spin {
   0% {
     transform: rotate(25deg);
@@ -106,9 +90,7 @@ button:hover {
   display: inline-block;
   padding: 5px;
   transition: all 200ms ease-in-out;
-  animation: 1s slide-right;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+  margin-right: 10px;
 }
 .arrow--right {
   transform: rotate(-45deg);
@@ -144,7 +126,6 @@ button:hover {
 
 body {
   background-color: hsl(195deg, 46%, 5%);
-  animation: fadein 2s;
 }
 
 .loader {
@@ -233,6 +214,9 @@ nav {
     align-items: center;
   }
   .menu-desktop__item {
+    transform: translateY(-100px);
+    opacity: 0;
+    visibility: hidden;
     margin-left: 10%;
   }
   .menu-desktop__item a {
@@ -335,7 +319,7 @@ nav {
 header {
   background: linear-gradient(0deg, hsl(195deg, 46%, 5%) 0%, hsl(266deg, 100%, 15%) 100%);
   padding: 110px 40px 80px 40px;
-  height: 95vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -347,7 +331,10 @@ header h2 {
   font-weight: 400;
 }
 header p {
-  margin: 5px 0;
+  margin: 8px 0;
+  transform: translateY(15px);
+  opacity: 0;
+  visibility: hidden;
 }
 @media screen and (min-width: 900px) {
   header {

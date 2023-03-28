@@ -11,6 +11,57 @@ function hideLoader() {
 }
 hideLoader();
 
+//ENTRY ANIMATIONS
+
+function showIntroArrows() {
+  const introArrows = document.querySelectorAll("header p");
+  const introArrowsTimeline = gsap.timeline();
+  introArrowsTimeline
+    .to(introArrows[0], {
+      y: 0,
+      autoAlpha: 1,
+    })
+    .to(introArrows[1], {
+      y: 0,
+      autoAlpha: 1,
+    })
+    .to(introArrows[2], {
+      y: 0,
+      autoAlpha: 1,
+    })
+    .duration(0.5);
+}
+
+function showNavElements() {
+  const navElements = document.querySelectorAll(".menu-desktop__item");
+  const navTimeline = gsap.timeline();
+  navTimeline
+    .to(navElements[0], {
+      y: 0,
+      autoAlpha: 1,
+    })
+    .to(navElements[1], {
+      y: 0,
+      autoAlpha: 1,
+    })
+    .to(navElements[2], {
+      y: 0,
+      autoAlpha: 1,
+    })
+    .to(navElements[3], {
+      y: 0,
+      autoAlpha: 1,
+      onComplete: () => {
+        showIntroArrows();
+      },
+    })
+    .duration(0.5)
+}
+
+setTimeout(()=>{
+  showNavElements()
+},3500);
+
 //HAMBURGER
 
 const burger = document.querySelector(".hamburger");
