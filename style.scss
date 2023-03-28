@@ -203,7 +203,6 @@ body {
 .loader {
   width: 100%;
   height: 100vh;
-  transition: all 200ms ease-in-out;
   position: absolute;
   top: 0;
   left: 0;
@@ -226,9 +225,9 @@ body {
     animation: 1s spin infinite;
     animation-delay: 1s;
   }
-  &--ended {
-    height: 0;
-  }
+  // &--ended {
+  //   height: 0;
+  // }
 }
 
 //MENU
