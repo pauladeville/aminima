@@ -2,10 +2,25 @@
 
 $light: hsl(40, 14%, 96%);
 $accent: hsl(266, 100%, 64%);
+$accent-dark: hsl(266, 100%, 15%);
 $dark: hsl(195, 46%, 5%);
+
+$gradient: linear-gradient(0deg, $dark 0%, $accent-dark 100%);
+$reverse-gradient: linear-gradient(0deg, $accent-dark 0%, $dark 100%);
+
+$shadow: 0 0 20px -5px $dark;
+
+$soft-radius: 10px;
+$strong-radius: 20px;
+$button-radius: 500px;
 
 //MEDIA QUERIES
 
+@mixin big-screen {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
 @mixin desktop {
   @media screen and (min-width: 900px) {
     @content;
@@ -27,37 +42,28 @@ $dark: hsl(195, 46%, 5%);
     opacity: 1;
   }
 }
-@-moz-keyframes fadein {
-  /* sur Firefox */
+
+@keyframes slide-right {
   from {
-    opacity: 0;
+    margin-right: -25px;
   }
   to {
-    opacity: 1;
+    margin-right: 25px;
   }
 }
-@-webkit-keyframes fadein {
-  /* sur Safari et Chrome */
-  from {
-    opacity: 0;
+
+@keyframes spin {
+  0% {
+    transform: rotate(25deg);
   }
-  to {
-    opacity: 1;
-  }
-}
-@-o-keyframes fadein {
-  /* sur Opera */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+  100% {
+    transform: rotate(385deg);
   }
 }
 
 //TEXT
 
-@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,500;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;300;400;500;800&display=swap");
 
 $font-weight: (
   text: 400,
@@ -95,7 +101,7 @@ p {
   display: flex;
   justify-content: start;
   align-items: end;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
   padding-top: 10px;
   h3,
   span {
@@ -121,6 +127,10 @@ p {
       font-size: 24px;
     }
   }
+  & + p{
+    margin-bottom: 50px;
+  }
+
 }
 
 //PADDING
@@ -129,24 +139,22 @@ $padding: (
   mobileX: 40px,
   mobileY: 80px,
   desktopX: 10%,
-  desktopY: 10%,
+  desktopY: 150px,
+  bigX: 15%,
 );
 
 //BUTTONS
 
 button {
-  animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari et Chrome */
-    -o-animation: fadein 2s; /* Opera */
   border: $light 1px solid;
-  border-radius: 500px;
+  border-radius: $button-radius;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 13px 25px 15px 25px;
   margin: 35px 0;
   background-color: transparent;
+  box-shadow: $shadow;
   font-weight: map-get($font-weight, link);
   font-size: 20px;
   text-align: left;
@@ -164,11 +172,14 @@ button {
 //ARROWS
 
 .arrow {
-  border: solid $light;
+  border: solid $accent;
   border-width: 0 2px 2px 0;
   display: inline-block;
   padding: 5px;
   transition: all 200ms ease-in-out;
+  animation: 1s slide-right;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
   &--right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
@@ -182,6 +193,7 @@ button {
     -webkit-transform: rotate(-135deg);
   }
   &--down {
+    border-color: $light;
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
   }
@@ -192,14 +204,56 @@ button {
 * {
   margin: 0;
   padding: 0;
-  font-family: "Source Code Pro", monospace;
+  font-family: "Fira Sans", sans-serif;
   color: $light;
   box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scroll-behavior: smooth;
+
 }
 
 body {
   background-color: $dark;
+  animation: fadein 2s;
 }
+
+//PAGE LOADER
+
+.loader{
+  width: 100%;
+  height: 100vh;
+  transition: all 200ms ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: $dark;
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__text{
+    padding-left: 25px;
+  }
+  &__icon{
+    display: inline-block;
+    width: 2px;
+    height: 20px;
+    background-color: $light;
+    transform: rotate(20deg);
+    animation: 1s spin infinite;
+    animation-delay: 1s;
+  }
+  &--ended{
+    height: 0;
+  }
+}
+
 
 //MENU
 
@@ -225,10 +279,21 @@ nav {
   padding: 25px map-get($padding, mobileX);
   background-color: $dark;
   width: 100%;
-  z-index: 9;
+  z-index: 8;
   @include desktop {
-    position: sticky;
+    position: fixed;
     padding: 25px map-get($padding, desktopX);
+    background-color: transparent;
+    transition: background-color 300ms ease-in-out;
+  }
+  @include big-screen() {
+    padding: 25px map-get($padding, bigX);
+  }
+}
+
+.nav--scroll {
+  @include desktop {
+    background-color: $dark;
   }
 }
 
@@ -246,7 +311,7 @@ nav {
       a {
         text-decoration: none;
         display: inline-block;
-        width: (400px/4);
+        width: calc(400px / 4);
       }
       span {
         color: $accent;
@@ -288,6 +353,7 @@ nav {
   }
   &--close {
     span {
+      z-index:9;
       &:nth-child(1) {
         transform: rotateZ(45deg);
       }
@@ -316,9 +382,9 @@ nav {
   list-style-type: none;
   transform: translateY(0);
   transition: transform 500ms ease-in-out;
-  z-index: 8;
+  z-index: 7;
   &--close {
-    transform: translateY(-1000px);
+    transform: translateY(-1050px);
   }
   &__item {
     margin-bottom: 30px;
@@ -333,9 +399,8 @@ nav {
 //HEADER
 
 header {
+  background: $gradient;
   padding: (map-get($padding, mobileY) + 30px) map-get($padding, mobileX) map-get($padding, mobileY) map-get($padding, mobileX);
-  background: url(ressources/bg.jpg);
-  background-size: cover;
   height: (95vh);
   display: flex;
   flex-direction: column;
@@ -344,19 +409,35 @@ header {
   h2 {
     font-size: 32px;
     margin-bottom: 35px;
+    font-weight: map-get($font-weight, text);
+  }
+  p {
+    margin: 5px 0;
   }
   @include desktop {
-    padding: (map-get($padding, desktopY)) map-get($padding, desktopX) map-get($padding, desktopY) map-get($padding, desktopX);
+    padding: 100px map-get($padding, desktopX) 100px map-get($padding, desktopX);
+    position: relative;
+    top: -100px;
+    height: 110vh;
+  }
+  @include big-screen() {
+    padding-left: map-get($padding, bigX);
+    padding-right: map-get($padding, bigX);
   }
 }
 
 //SECTION
 
 section {
+  background-color: $dark;
   .container {
     padding: map-get($padding, mobileY) map-get($padding, mobileX);
     @include desktop {
       padding: map-get($padding, desktopY) map-get($padding, desktopX);
+    }
+    @include big-screen {
+      padding-left: map-get($padding, bigX);
+      padding-right: map-get($padding, bigX);
     }
   }
 }
@@ -382,6 +463,9 @@ section {
       @include accent-text;
       margin-right: 10px;
     }
+    p{
+      margin-top: 10px;
+    }
   }
 }
 .more-info {
@@ -392,7 +476,7 @@ section {
       display: inline-block;
       width: 50%;
       max-width: 250px;
-      border-radius: 500px;
+      border-radius: $button-radius;
     }
   }
   @include tablet {
@@ -406,7 +490,15 @@ section {
 //CLIENTS
 
 #clients {
-  background-color: lighten($dark, 5%);
+  background-color: $dark;
+}
+
+.accordeon{
+  margin: 0 auto;
+  width: 80%;
+  @include desktop{
+    margin: 0;
+  }
 }
 .accordeon__client {
   display: flex;
@@ -414,24 +506,23 @@ section {
   justify-content: space-between;
   align-items: center;
   border-bottom: solid $light 1px;
-  padding: 20px 5px 20px 0;
+  padding: 20px 5px 20px 0px;
   margin: 20px 0;
   cursor: pointer;
+  transition: all 300ms ease-in-out;
+  position: relative;
   p {
-    transition: all 200ms ease-in-out;
+    transition: all 300ms ease-in-out;
   }
-  &:hover > span {
-    border-color: $accent;
+  &:hover {
+    padding-left: 20px;
   }
   &:hover > p {
-    color: $accent;
+    padding-right: 20px;
   }
   &--active {
-    p {
-      color: $accent;
-    }
     span {
-      border-color: $accent;
+      border-color: $light;
     }
   }
 }
@@ -439,6 +530,14 @@ section {
   max-height: 0;
   overflow: hidden;
   transition: all 300ms ease-in-out;
+  opacity: 0;
+  p{
+    font-size: 18px;
+    font-weight: 200;
+  }
+  &--active{
+    opacity: 1;
+  }
 }
 
 //WORK - MOBILE CARDS ANIMATION
@@ -446,9 +545,12 @@ section {
 $card-top-offset: 1.5em;
 $card-sides-offset: 20px;
 //mettre à jour à chaque ajout de ref
-$numcards: 5;
+$numcards: 4;
 
 .mobile-cards {
+  @include desktop {
+    display: none;
+  }
   background-color: transparent;
   margin: 0 $card-sides-offset;
   list-style-type: none;
@@ -457,52 +559,181 @@ $numcards: 5;
   overflow: hidden;
   text-align: center;
   img {
-    border-radius: 20px;
+    border-radius: $strong-radius;
     width: 90%;
     max-width: 500px;
   }
 }
-#card-1 {
+#mobile-card-1 {
   --index: 1;
 }
-#card-2 {
+#mobile-card-2 {
   --index: 2;
 }
-#card-3 {
+#mobile-card-3 {
   --index: 3;
 }
-#card-4 {
+#mobile-card-4 {
   --index: 4;
 }
-#card-5 {
+#mobile-card-5 {
   --index: 5;
 }
-.card {
+.mobile-card {
   position: sticky;
   top: 80px;
   padding-top: calc(var(--index) * $card-top-offset);
 }
 
+//WORK CARDS DESKTOP
+
+#work {
+    .container:first-child {
+      padding-bottom: 0;
+  }
+}
+
+.desktop-card {
+  display: none;
+  @include desktop {
+    display: grid;
+    grid-template-columns: 40% repeat(2, 1fr) 30%;
+    grid-template-rows: repeat(4, auto);
+    align-items: center;
+    text-align: right;
+    padding: 10% 0;
+    &:last-child{
+      padding-bottom: 0;
+    }
+  }
+  img {
+    border-radius: $soft-radius;
+    grid-column: 1 / 3;
+    grid-row: 1 / 5;
+    max-width: 100%;
+    position: relative;
+    filter: grayscale(100);
+    transition: all 300ms ease-in-out;
+    &:hover {
+      filter: grayscale(0);
+    }
+  }
+  h4 {
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+    display: inline-block;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  p.box {
+    border-radius: $soft-radius;
+    grid-column: 2 / 5;
+    grid-row: 2 / 3;
+    z-index: 2;
+    display: block;
+    padding: 30px;
+    margin-bottom: 30px;
+    background-color: $accent-dark;
+    box-shadow: $shadow;
+  }
+  &__stack {
+    grid-column: 3 / 5;
+    grid-row: 3 / 4;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 20px;
+    > p {
+      margin-left: 25px;
+      text-transform: uppercase;
+      font-size: 16px;
+    }
+  }
+  &__links {
+    grid-column: 3 / 5;
+    grid-row: 4 / 5;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    > a {
+      margin-left: 15px;
+      transition: all 200ms ease-in-out;
+    }
+  }
+  &--left {
+    text-align: left;
+    grid-template-columns: 30% repeat(2, 1fr) 40%;
+    img {
+      grid-column: 3 / 5;
+    }
+    h4 {
+      grid-column: 1 / 2;
+    }
+    p.box {
+      grid-column: 1 / 4;
+    }
+    .desktop-card__stack {
+      grid-column: 1 / 3;
+      justify-content: start;
+      > p {
+        margin-right: 25px;
+        margin-left: 0;
+      }
+    }
+    .desktop-card__links {
+      grid-column: 1 / 3;
+      justify-content: start;
+      > a {
+        margin-right: 15px;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+//WORDPRESS LINK
+
+.info{
+  max-width: 500px;
+  border-radius: $strong-radius;
+  padding: 50px 50px 30px 50px;
+  margin: auto;
+  box-shadow: $shadow;
+  background-color: $accent-dark;
+  @include desktop{
+    border-radius: $soft-radius;
+  }
+}
+
 //CONTACT
 
 #contact {
-  background: url(ressources/bg.jpg);
-  background-size: cover;
+  background: $reverse-gradient;
+  position: relative;
   .container {
     text-align: center;
     padding-bottom: 0;
     .title {
       text-align: left;
+      @include desktop {
+        margin-bottom: 150px;
+      }
     }
   }
   .contact-button {
     text-decoration: none;
-    font-size: 65px;
+    text-align: left;
     text-transform: uppercase;
     font-style: italic;
+    font-weight: 700;
+    font-size: 80px;
     transition: color 200ms ease-in-out;
+    text-shadow: $shadow;
     &:hover {
       color: $accent;
+    }
+    @include desktop{
+      font-size: 100px;
     }
   }
   .social {
@@ -513,10 +744,18 @@ $numcards: 5;
     @include desktop {
       padding: map-get($padding, desktopX);
     }
+    @include big-screen() {
+      padding: map-get($padding, mobileY) map-get($padding, bigX);
+    }
   }
   img {
     width: 32px;
     margin-top: 20px;
+    filter: grayscale(100) brightness(2);
+    transition: all 300ms ease-in-out;
+    &:hover {
+      filter: grayscale(0) brightness(1);
+    }
     &:first-child {
       margin-top: 0;
     }

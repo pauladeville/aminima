@@ -9,10 +9,10 @@
 }
 @keyframes slide-right {
   from {
-    margin-right: -30px;
+    margin-right: -25px;
   }
   to {
-    margin-right: 30px;
+    margin-right: 25px;
   }
 }
 @keyframes spin {
@@ -72,6 +72,9 @@ p strong {
     font-size: 24px;
   }
 }
+.title + p {
+  margin-bottom: 50px;
+}
 
 button {
   border: hsl(40deg, 14%, 96%) 1px solid;
@@ -120,6 +123,7 @@ button:hover {
   -webkit-transform: rotate(-135deg);
 }
 .arrow--down {
+  border-color: hsl(40deg, 14%, 96%);
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
@@ -132,6 +136,7 @@ button:hover {
   box-sizing: border-box;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 *::-webkit-scrollbar {
   display: none;
@@ -171,9 +176,6 @@ body {
 }
 .loader--ended {
   height: 0;
-}
-.loader--ended > * {
-  display: none;
 }
 
 h1 {
@@ -273,6 +275,9 @@ nav {
 .hamburger span:nth-child(3) {
   transform: translateY(7px);
 }
+.hamburger--close span {
+  z-index: 9;
+}
 .hamburger--close span:nth-child(1) {
   transform: rotateZ(45deg);
 }
@@ -300,7 +305,7 @@ nav {
   list-style-type: none;
   transform: translateY(0);
   transition: transform 500ms ease-in-out;
-  z-index: 8;
+  z-index: 7;
 }
 .menu-mobile--close {
   transform: translateY(-1050px);
@@ -336,10 +341,6 @@ header {
   justify-content: end;
   align-items: flex-start;
 }
-header::after {
-  content: "";
-  background-image: url(ressources/pattern.png);
-}
 header h2 {
   font-size: 32px;
   margin-bottom: 35px;
@@ -350,7 +351,7 @@ header p {
 }
 @media screen and (min-width: 900px) {
   header {
-    padding: 250px 10% 150px 10%;
+    padding: 100px 10% 100px 10%;
     position: relative;
     top: -100px;
     height: 110vh;
@@ -402,6 +403,9 @@ section .container {
   text-decoration: none;
   margin-right: 10px;
 }
+#about .stack p {
+  margin-top: 10px;
+}
 
 .more-info {
   margin-top: 20px;
@@ -430,41 +434,32 @@ section .container {
   background-color: hsl(195deg, 46%, 5%);
 }
 
-.accordeon__client {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  align-items: center;
+.accordeon {
   border-bottom: solid hsl(40deg, 14%, 96%) 1px;
-  padding: 20px 5px 20px 0px;
-  margin: 20px 0;
+  overflow: hidden;
   cursor: pointer;
-  transition: all 300ms ease-in-out;
 }
-.accordeon__client p {
+.accordeon__client {
+  padding: 25px 0;
+  position: relative;
   transition: all 300ms ease-in-out;
 }
 .accordeon__client:hover {
   padding-left: 20px;
 }
-.accordeon__client:hover > span {
-  border-color: hsl(266deg, 100%, 64%);
-}
-.accordeon__client:hover > p {
-  color: hsl(266deg, 100%, 64%);
-  padding-right: 20px;
-}
-.accordeon__client--active p {
-  color: hsl(266deg, 100%, 64%);
-}
-.accordeon__client--active span {
-  border-color: hsl(266deg, 100%, 64%);
-}
-
 .accordeon__quote {
   max-height: 0;
   overflow: hidden;
   transition: all 300ms ease-in-out;
+  opacity: 0;
+}
+.accordeon__quote p {
+  font-size: 18px;
+  font-weight: 200;
+}
+.accordeon--active .accordeon__quote {
+  padding: 0 0 25px 0;
+  opacity: 1;
 }
 
 .mobile-cards {
@@ -514,10 +509,8 @@ section .container {
   padding-top: calc(var(--index) * 1.5em);
 }
 
-@media screen and (min-width: 900px) {
-  #work .container:first-child {
-    padding-bottom: 0;
-  }
+#work .container:first-child {
+  padding-bottom: 0;
 }
 
 .desktop-card {
@@ -537,7 +530,7 @@ section .container {
   }
 }
 .desktop-card img {
-  border-radius: 5px;
+  border-radius: 10px;
   grid-column: 1/3;
   grid-row: 1/5;
   max-width: 100%;
@@ -548,15 +541,15 @@ section .container {
 .desktop-card img:hover {
   filter: grayscale(0);
 }
-.desktop-card h1 {
+.desktop-card h4 {
   grid-column: 4/5;
   grid-row: 1/2;
   display: inline-block;
-  font-size: 28px;
+  font-size: 22px;
   margin-bottom: 20px;
 }
 .desktop-card p.box {
-  border-radius: 5px;
+  border-radius: 10px;
   grid-column: 2/5;
   grid-row: 2/3;
   z-index: 2;
@@ -597,7 +590,7 @@ section .container {
 .desktop-card--left img {
   grid-column: 3/5;
 }
-.desktop-card--left h1 {
+.desktop-card--left h4 {
   grid-column: 1/2;
 }
 .desktop-card--left p.box {
@@ -620,6 +613,20 @@ section .container {
   margin-left: 0;
 }
 
+.info {
+  max-width: 500px;
+  border-radius: 20px;
+  padding: 50px 50px 30px 50px;
+  margin: auto;
+  box-shadow: 0 0 20px -5px hsl(195deg, 46%, 5%);
+  background-color: hsl(266deg, 100%, 15%);
+}
+@media screen and (min-width: 900px) {
+  .info {
+    border-radius: 10px;
+  }
+}
+
 #contact {
   background: linear-gradient(0deg, hsl(266deg, 100%, 15%) 0%, hsl(195deg, 46%, 5%) 100%);
   position: relative;
@@ -638,14 +645,21 @@ section .container {
 }
 #contact .contact-button {
   text-decoration: none;
-  font-size: 100px;
+  text-align: left;
   text-transform: uppercase;
   font-style: italic;
   font-weight: 700;
+  font-size: 80px;
   transition: color 200ms ease-in-out;
+  text-shadow: 0 0 20px -5px hsl(195deg, 46%, 5%);
 }
 #contact .contact-button:hover {
   color: hsl(266deg, 100%, 64%);
+}
+@media screen and (min-width: 900px) {
+  #contact .contact-button {
+    font-size: 100px;
+  }
 }
 #contact .social {
   padding: 40px;

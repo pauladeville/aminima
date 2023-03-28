@@ -1,10 +1,13 @@
 //LOADER PAGE
 
-const loader = document.querySelector('.loader');
-function hideLoader(){
+const loader = document.querySelector(".loader");
+function hideLoader() {
   setTimeout(() => {
-    loader.classList.add('loader--ended');
+    loader.classList.add("loader--ended");
   }, 3000);
+  setTimeout(() => {
+    loader.remove();
+  }, 3200);
 }
 hideLoader();
 
@@ -28,27 +31,35 @@ for (menuMobileLink of menuMobileLinks) {
 
 let nav = document.querySelector("nav");
 window.addEventListener("scroll", (e) => {
-  if(scrollY > 150){
-    nav.classList.add('nav--scroll')
-  }else if(scrollY <= 150 || nav.classList.contains('nav--scroll')){
-    nav.classList.remove('nav--scroll');
+  if (scrollY > 150) {
+    nav.classList.add("nav--scroll");
+  } else if (scrollY <= 150 || nav.classList.contains("nav--scroll")) {
+    nav.classList.remove("nav--scroll");
   }
 });
 
-//ACCORDEON
+//ACCORDEON CLIENTS
 
-let clients = document.querySelectorAll(".accordeon__client");
-let quotes = document.querySelectorAll("accordeon__quote");
-for (let client of clients) {
-  client.addEventListener("click", () => {
-    client.classList.toggle("accordeon__client--active");
-    client.firstElementChild.classList.toggle("arrow--down");
-    client.firstElementChild.classList.toggle("arrow--up");
-    let quote = client.nextElementSibling;
-    if (quote.style.maxHeight) {
-      quote.style.maxHeight = null;
+const accordeons = document.querySelectorAll(".accordeon");
+function openAccordeon(accordeon) {
+  let quote = accordeon.querySelector(".accordeon__quote");
+  accordeon.classList.add("accordeon--active");
+  quote.style.maxHeight = quote.scrollHeight + 25 + "px";
+}
+function closeAccordeon(accordeon) {
+  let quote = accordeon.querySelector(".accordeon__quote");
+  accordeon.classList.remove("accordeon--active");
+  quote.style.maxHeight = 0;
+}
+for (let accordeon of accordeons) {
+  accordeon.addEventListener("click", () => {
+    if (accordeon.classList.contains("accordeon--active")) {
+      closeAccordeon(accordeon);
     } else {
-      quote.style.maxHeight = quote.scrollHeight + "px";
+      for (let accordeon of accordeons) {
+        closeAccordeon(accordeon);
+      }
+      openAccordeon(accordeon);
     }
   });
 }
