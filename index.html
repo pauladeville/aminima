@@ -100,15 +100,47 @@
         <p>Je m’appelle Pauline Desmarets, et je suis une développeuse fullstack à la recherche du site parfait : impactant, léger, facile à maintenir. J’explore sans cesse de nouveaux langages et outils, mais j’aime particulièrement travailler avec :</p>
         <div class="more-info">
           <div class="stack">
-            <p><span class="arrow arrow--right"></span> Sass</p>
-            <p><span class="arrow arrow--right"></span> JavaScript</p>
-            <p><span class="arrow arrow--right"></span> Vue.js 3</p>
-            <p><span class="arrow arrow--right"></span> Express</p>
-            <p><span class="arrow arrow--right"></span> Node.js</p>
-            <p><span class="arrow arrow--right"></span> MySQL</p>
-            <p><span class="arrow arrow--right"></span> WordPress</p>
+            <div class="stack__column">
+              <div>
+                <span class="arrow arrow--right"></span>
+                <p>Sass</p>
+              </div>
+              <div>
+                <span class="arrow arrow--right"></span>
+                <p>JavaScript</p>
+              </div>
+              <div>
+                <span class="arrow arrow--right"></span>
+                <p>GSAP</p>
+              </div>
+              <div>
+                <span class="arrow arrow--right"></span>
+                <p>Vue.js 3</p>
+              </div>
+            </div>
+            <div class="stack__column">
+              <div>
+                <span class="arrow arrow--right"></span>
+                <p>Express</p>
+              </div>
+
+              <div>
+                <span class="arrow arrow--right"></span>
+                <p>Node.js</p>
+              </div>
+              <div>
+                <span class="arrow arrow--right"></span>
+                <p>MySQL</p>
+              </div>
+              <div>
+                <span class="arrow arrow--right"></span>
+                <p>WordPress</p>
+              </div>
+            </div>
           </div>
-          <img src="ressources/pauline-desmarets.jpg" alt="" />
+          <div class="mobile-portrait">
+            <img src="ressources/pauline-desmarets.jpg" alt="" />
+          </div>
         </div>
       </div>
     </section>
@@ -158,9 +190,10 @@
           <div></div>
           <h3>réalisations personnelles</h3>
         </div>
+
         <p>Ces projets ont tous été codés sur la base de maquettes respectées au pixel près, et sont 100% mobile responsives.</p>
 
-        <div class="desktop-card">
+        <div class="desktop-card desktop-card--right">
           <img src="ressources/projects/desktop/calculatrice.png" alt="" />
           <h4>Calculatrice clavier-compatible</h4>
           <p class="box">Calculatrice fonctionnant au clic et au clavier, gérant les erreurs avec une animation simple et proposant 3 thèmes de couleurs différents.</p>
@@ -196,7 +229,7 @@
           </div>
         </div>
 
-        <div class="desktop-card">
+        <div class="desktop-card desktop-card--right">
           <img src="ressources/projects/desktop/landing-page.png" alt="" />
           <h4>Landing page responsive</h4>
           <p class="box">Page d'accueil responsive avec contenus en onglets, en accordéon, inline svg modifications et des animations douces sur l'ensemble.</p>
@@ -214,6 +247,7 @@
           </div>
         </div>
       </div>
+
       <ul class="mobile-cards">
         <li class="mobile-card" id="mobile-card-1">
           <div class="card__content">
@@ -269,12 +303,19 @@
         <a href="mailto:pauline@aminima.fr">
           <img src="ressources/mail-accent.png" alt="" />
         </a>
-        <img src="ressources/github-accent.png" alt="" />
-        <img src="ressources/linkedin-accent.png" alt="" />
+        <a href="https://github.com/pauladeville/">
+          <img src="ressources/github-accent.png" alt="" />
+        </a>
+        <a href="https://www.linkedin.com/in/paulinedesmarets/">
+          <img class="linkedin" src="ressources/linkedin-accent.png" alt="" />
+        </a>
       </div>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollToPlugin.min.js"></script>
+
     <script src="app.js"></script>
   </body>
 </html>
